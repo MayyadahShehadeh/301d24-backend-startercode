@@ -6,14 +6,14 @@ const mongoose=require('mongoose');
 require('dotenv').config();
 app.use(express.json());
 app.use(cors());
-const port=process.env.port;
+const port=process.env.PORT;
 const {
     home,
     getFavoriteCoffee,
     createItemController,
     updateItemController,
     deleteItemController,
-    retreiveItemController
+    retreiveItemsController
 }=require('./controllers/coffee.controller');
 
 mongoose.connect(`mongodb://127.0.0.1:27017/finalexam`, 
@@ -21,7 +21,7 @@ mongoose.connect(`mongodb://127.0.0.1:27017/finalexam`,
 
 app.get('/',home);
 app.get('/fav-list',getFavoriteCoffee);
-app.get('/retreive',retreiveItemController);
+app.get('/retreive',retreiveItemsController);
 app.post('/create',createItemController);
 app.put('/update/:id',updateItemController);
 app.delete('/delete/:id',deleteItemController);
